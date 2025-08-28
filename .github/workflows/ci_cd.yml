@@ -55,14 +55,13 @@ jobs:
       env:
         PGPASSWORD: ${{ secrets.DB_PASSWORD }}
       run: |
-        # 修正: 將 localhost 替換為 postgres
         psql -h postgres -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -f ${{ secrets.SQL_DIR }}/create_table.sql
 
     - name: Download data files
       run: |
         mkdir -p ${{ secrets.RAW_DATA_PATH }}
         mkdir -p ${{ secrets.PROCESSED_DATA_PATH }}
-        echo "--- 添加實際的數據下載命令 ---"
+        echo 
         # 例如: wget -P ${{ secrets.RAW_DATA_PATH }} https://your-data-url/green_tripdata_2025-01.parquet
 
     - name: Run data pipeline script
