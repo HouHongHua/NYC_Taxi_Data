@@ -62,7 +62,6 @@ jobs:
         mkdir -p ${{ secrets.RAW_DATA_PATH }}
         mkdir -p ${{ secrets.PROCESSED_DATA_PATH }}
         echo 
-        # 例如: wget -P ${{ secrets.RAW_DATA_PATH }} https://your-data-url/green_tripdata_2025-01.parquet
 
     - name: Run data pipeline script
       env:
@@ -82,7 +81,6 @@ jobs:
       env:
         PGPASSWORD: ${{ secrets.DB_PASSWORD }}
       run: |
-        # 修正: 將 localhost 替換為 postgres
         psql -h postgres -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -c "SELECT COUNT(*) FROM ${{ secrets.DB_TABLE_NAME }};"
         echo "Data import verification query executed."
 
