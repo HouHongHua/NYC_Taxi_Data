@@ -19,11 +19,11 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd pg_isready
+          --health-cmd pg_isready -d ${{ secrets.DB_NAME }} -U ${{ secrets.DB_USER }} # 增強健康檢查命令
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 5
-
+          --health-retries 10 # <--- 增加重試次數，給更多時間啟動
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -38,14 +38,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e .
 
-    - name: Wait for PostgreSQL service
+    - name: Wait for PostgreSQL service 
       run: |
-        for i in `seq 1 10`; do
-          nc -z localhost 5432 && break
-          echo "Waiting for Postgres service..."
-          sleep 5
+        echo "Waiting for Postgres service to be fully ready..."
+        # 增加等待次數和每次等待時間，確保服務完全啟動
+        for i in `seq 1 20`; do # <--- 增加循環次數，總共等待時間更長
+          nc -z -w 5 localhost 5432 && break # 檢查 5432 埠是否開啟，並增加連接超時
+          echo "Still waiting for Postgres service..."
+          sleep 5 # 每次等待 5 秒
         done
-        nc -z localhost 5432
+        nc -z -w 5 localhost 5432 || { echo "Error: Postgres service did not become available."; exit 1; } # 最終檢查，如果失敗則退出
         echo "Postgres service is ready!"
 
     - name: Create database table
@@ -54,7 +56,7 @@ jobs:
       run: |
         psql -h localhost -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -f ${{ secrets.SQL_DIR }}/create_table.sql
 
-    - name: Download data files 
+    - name: Download data files (IMPORTANT: You MUST adapt this step)
       run: |
         mkdir -p ${{ secrets.RAW_DATA_PATH }}
         mkdir -p ${{ secrets.PROCESSED_DATA_PATH }}
