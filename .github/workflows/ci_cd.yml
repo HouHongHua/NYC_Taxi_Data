@@ -19,7 +19,7 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd pg_isready -d ${{ secrets.DB_NAME }} -U ${{ secrets.DB_USER }} # 增強健康檢查命令
+          --health-cmd pg_isready -d 
           --health-interval 10s
           --health-timeout 5s
           --health-retries 10 # <--- 增加重試次數，給更多時間啟動
