@@ -15,11 +15,7 @@ jobs:
           POSTGRES_DB: ${{ secrets.DB_NAME }}
           POSTGRES_USER: ${{ secrets.DB_USER }}
           POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        options: >-
-          --health-cmd="pg_isready -d ${{ secrets.DB_NAME }} -U ${{ secrets.DB_USER }}
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=10
+
 
     
     steps:
