@@ -56,7 +56,7 @@ jobs:
       run: |
         psql -h localhost -U ${{ secrets.DB_USER }} -d ${{ secrets.DB_NAME }} -f ${{ secrets.SQL_DIR }}/create_table.sql
 
-    - name: Download data files (IMPORTANT: You MUST adapt this step)
+    - name: Download data files 
       run: |
         mkdir -p ${{ secrets.RAW_DATA_PATH }}
         mkdir -p ${{ secrets.PROCESSED_DATA_PATH }}
