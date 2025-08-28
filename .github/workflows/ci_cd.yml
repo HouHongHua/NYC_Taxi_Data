@@ -92,8 +92,8 @@ jobs:
         echo "Data import verification query executed."
 
     - name: Upload model artifact (optional)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: green-taxi-tip-prediction-model
         path: green_taxi_tip_prediction_model.joblib
-        # path: ${{ secrets.PROCESSED_DATA_PATH }}/green_taxi_tip_prediction_model.joblib # If model is in PROCESSED_DATA_PATHgit add .
+        # path: ${{ secrets.PROCESSED_DATA_PATH }}/green_taxi_tip_prediction_model.joblib # If model is in PROCESSED_DATA_PATH

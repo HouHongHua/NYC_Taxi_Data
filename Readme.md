@@ -1,5 +1,7 @@
 # NYC Taxi Data Pipeline
-This project aims to establish an automated data pipeline for processing New York City taxi data (currently focusing on green taxi data). The process includes importing raw Parquet files into a PostgreSQL database, filtering the data, and training a machine learning model to predict tip amounts.
+This project aims to establish an automated data pipeline for processing New York City taxi data (currently focusing on green taxi data). 
+
+The process includes importing raw Parquet files into a PostgreSQL database, filtering the data, and training a machine learning model to predict tip amounts.
 
 # Project Target
 **Data Import**：https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
@@ -129,7 +131,21 @@ SQL_DIR: /github/workspace/sql
 
 **4. Push to GitHub**
 ```
+Initial:
+cd D:\Users\User\Desktop\Julia\NYC_Taxi
+git init
 git add .
 git commit -m "feat: Initial project setup with data pipeline and model training"
+git branch -M main
+git remote add origin https://github.com/HouHongHua/NYC_Taxi_Data_Pipeline.git
+git push -u origin main
+```
+
+```
+Then:
+cd D:\Users\User\Desktop\Julia\NYC_Taxi
+git add .
+git commit -m "docs: Update README and chore: Adjust model training/testing months"
 git push origin main
 ```
+

@@ -161,7 +161,7 @@ if __name__ == '__main__':
     RAW_DATA_PATH = os.getenv('RAW_DATA_PATH', './data/raw/')
     PROCESSED_DATA_PATH = os.getenv('PROCESSED_DATA_PATH', './data/processed/')
 
-    target_months = ['01', '02', '03', '04', '05']
+    target_months = ['01', '02', '03', '04']
     data_name = 'green_tripdata_2025-*.parquet'
     table_name = 'green_tripdata'
 
@@ -208,6 +208,6 @@ if __name__ == '__main__':
 
 # 訓練
 TRAINING_MONTHS = ['01', '02', '03'] 
-TESTING_MONTHS = ['04', '05'] 
+TESTING_MONTHS = ['04'] 
 
 train_tip_prediction_model(df, TRAINING_MONTHS, TESTING_MONTHS)
