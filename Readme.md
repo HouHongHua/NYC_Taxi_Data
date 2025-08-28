@@ -44,7 +44,8 @@ cd NYC_Taxi_Data_Pipeline
 2. create a Python .venv
 ```
 python -m venv .venv    
-~ Windows  
+~ Windows
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process  
 .\.venv\Scripts\activate  
 ```
 3. Install Dependencies
